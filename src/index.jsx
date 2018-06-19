@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import NavBar from './components/Navbar'
+import Parent from './components/parent'
 import './index.css'
 
 class App extends React.Component {
@@ -15,9 +15,8 @@ class App extends React.Component {
   render() {
     return (
     <div>
-      <NavBar />
       <div className="container">
-        Hello React
+        <Parent />
       </div>
     </div>
     );
