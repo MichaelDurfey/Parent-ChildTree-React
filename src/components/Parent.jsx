@@ -6,6 +6,7 @@ class Parent extends React.Component {
     super(props);
     this.state = {
       title: 'Parent',
+      index: 0,
       properties: [
         ['name', 'foo' ],
        ['gender', 'male' ],
@@ -15,12 +16,21 @@ class Parent extends React.Component {
       children: [],
     }
   }
+  
+  removeChild(index){
+    let children = this.state.children.slice();
+    children.splice(index, 1);
+    this.setState({
+      children,
+    })
+  }
 
   addChild() {
     let children = this.state.children.slice();
-    children.push(<Child />)
+    children.push(<Child removeChild={(index) => this.removeChild(index)} index={this.state.index}/>)
     this.setState({
       children,
+      index: this.state.index += 1,
     })
   }
 
@@ -36,9 +46,7 @@ class Parent extends React.Component {
       </ul>
       <button onClick={() => this.addChild()}>Add Child</button>
       <div className="children">
-        {this.state.children.map(child => {
-          return <Child child={child}/>
-        })}
+        {this.state.children}
       </div>
     </div>
     );
